@@ -1,52 +1,52 @@
-# PS4HEN v2.2.0 BETA
+# PS4HEN v2.2.0 BETA (中文版)
 
-## Features
-- Current Supports 5.05 - 12.02
-- Homebrew Enabler
-- Plugins System
-  - Plugins are bundled into HEN, the `hen.bin` in this repository has plugins as of [latest](https://github.com/Scene-Collective/ps4-hen-plugins/releases/latest) tag.
-  - More info at [ps4-hen-plugins](https://github.com/Scene-Collective/ps4-hen-plugins) page.
-- Jailbreak
-- Sandbox Escape
-- Debug Settings
-- External HDD Support
-- VR Support
-- Remote Package Install
-- Rest Mode Support
-- External HDD Format Support
-- Bypass Firmware Checks
-- Debug Trophies Support
-- sys_dynlib_dlsym Patch
-- UART Enabler
-- Never Disable Screenshot
-- Remote Play Enabler
-- Disable ASLR
+## 功能特性
+- 当前支持 5.05 - 12.02 固件版本
+- 自制程序启用器
+- 插件系统
+  - 插件已集成到 HEN 中，此仓库中的 `hen.bin` 包含 [最新](https://github.com/Scene-Collective/ps4-hen-plugins/releases/latest) 标签的插件。
+  - 更多信息请访问 [ps4-hen-plugins](https://github.com/Scene-Collective/ps4-hen-plugins) 页面。
+- 越狱
+- 沙盒逃逸
+- 调试设置
+- 外置硬盘支持
+- VR 支持
+- 远程软件包安装
+- 休眠模式支持
+- 外置硬盘格式化支持
+- 绕过固件检查
+- 调试奖杯支持
+- sys_dynlib_dlsym 补丁
+- UART 启用器
+- 永不禁用截图
+- 远程游玩启用器
+- 禁用 ASLR
 
-## Building
+## 编译
 
-Instructions provided are for Debian based systems. (Tested on Ubuntu)
+以下说明适用于基于 Debian 的系统。（在 Ubuntu 上测试通过）
 
-Install [ps4-payload-sdk](https://github.com/Scene-Collective/ps4-payload-sdk):
+安装 [ps4-payload-sdk](https://github.com/Scene-Collective/ps4-payload-sdk)：
 
 ```sh
 git clone https://github.com/Scene-Collective/ps4-payload-sdk.git
 sudo ./install.sh
 ```
 
-Clone the repository:
+克隆此仓库：
 
 ```sh
 git clone https://github.com/Scene-Collective/ps4-hen.git
 ```
 
-Compile the payload:
+编译载荷：
 
 ```sh
 ./build.sh
 ```
 
-## Contributors
-Massive credits to the following:
+## 贡献者
+特别感谢以下人员：
 - [qwertyoruiopz](https://twitter.com/qwertyoruiopz)
 - [Specter](https://twitter.com/SpecterDev) 
 - [flat_z](https://twitter.com/flat_z)
@@ -62,8 +62,8 @@ Massive credits to the following:
 - Anonymous
 - illusiony
 
-## Helped With Porting
-Massive Thanks to the following:
+## 移植协助
+特别感谢以下人员：
 - [BestPig](https://twitter.com/BestPig)
 - [LM](https://twitter.com/LightningMods)
 - [Al-Azif](https://twitter.com/_AlAzif)

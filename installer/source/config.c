@@ -51,7 +51,7 @@ static int set_bool_config(const char *name, const char *value, int *config_fiel
     return 1;
   }
 
-  printf_notification("ERROR: Invalid %s:\n    Must be 0 or 1 (false or true)", name);
+  printf_notification("错误: 无效的 %s:\n    必须为 0 或 1 (false 或 true)", name);
   *config_field = default_value;
   return 1;
 }
@@ -63,7 +63,7 @@ static int set_int_config(const char *name, const char *value, int *config_field
     return 1;
   }
 
-  printf_notification("ERROR: Malformed %s", name);
+  printf_notification("错误: 格式错误 %s", name);
   *config_field = default_value;
   return 1;
 }
@@ -98,18 +98,18 @@ static int config_handler(void *config, const char *name, const char *value) {
     if (strlen(value) == 1 && value[0] == '0') {
       memset(config_p->target_id, '\0', sizeof(config_p->target_id));
     } else if (strlen(value) != TARGET_ID_SIZE) {
-      printf_notification("ERROR: Malformed target_id:\n    Must be %i bytes (e.g. 0x84)", TARGET_ID_SIZE);
+      printf_notification("错误: 格式错误 target_id:\n    必须为 %i 字节 (例如 0x84)", TARGET_ID_SIZE);
       memset(config_p->target_id, '\0', sizeof(config_p->target_id));
     } else if (value[0] != '0' || value[1] != 'x' || !isxdigit(value[2]) || !isxdigit(value[3])) {
-      printf_notification("ERROR: Malformed target_id:\n    Incorrect format, must be 0x?? (e.g. 0x84)");
+      printf_notification("错误: 格式错误 target_id:\n    格式不正确，必须为 0x?? (例如 0x84)");
       memset(config_p->target_id, '\0', sizeof(config_p->target_id));
     } else {
       int parsed_id;
       if (sscanf(value, "%x", &parsed_id) != 1) {
-        printf_notification("ERROR: Failed to parse target_id:\n    Unable to convert hex value");
+        printf_notification("错误: 无法解析 target_id:\n    无法转换十六进制值");
         memset(config_p->target_id, '\0', sizeof(config_p->target_id));
       } else if (!((parsed_id >= 0x80 && parsed_id <= 0x8F) || parsed_id == 0xA0)) {
-        printf_notification("ERROR: Unknown target_id:\n    Only 0x80-0x8F and 0xA0 are valid");
+        printf_notification("错误: 未知的 target_id:\n    只有 0x80-0x8F 和 0xA0 是有效的");
         memset(config_p->target_id, '\0', sizeof(config_p->target_id));
       } else {
         memcpy(config_p->target_id, value, TARGET_ID_SIZE);
@@ -134,7 +134,7 @@ int init_config(struct configuration *config) {
   set_config_defaults(config);
   if (file_exists(USB_INI_PATH)) {
     if (cfg_parse(USB_INI_PATH, config_handler, config) < 0) {
-      printf_notification("ERROR: Unable to load `" USB_INI_PATH "`");
+      printf_notification("错误: 无法加载 `" USB_INI_PATH "`");
       // Restore defaults in case parsing partially succeeded before failing
       set_config_defaults(config);
     } else {
@@ -146,7 +146,7 @@ int init_config(struct configuration *config) {
     }
   } else if (file_exists(HDD_INI_PATH)) {
     if (cfg_parse(HDD_INI_PATH, config_handler, config) < 0) {
-      printf_notification("ERROR: Unable to load `" HDD_INI_PATH "`");
+      printf_notification("错误: 无法加载 `" HDD_INI_PATH "`");
       // Restore defaults in case parsing partially succeeded before failing
       set_config_defaults(config);
     } else {

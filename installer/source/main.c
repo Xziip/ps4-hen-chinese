@@ -27,63 +27,63 @@ static void set_target_id(char *tid) {
   case 0:
     break;
   case 0x80:
-    snprintf(buffer, buffer_size, "Diagnostic");
+    snprintf(buffer, buffer_size, "诊断版");
     break;
   case 0x81:
-    snprintf(buffer, buffer_size, "Devkit");
+    snprintf(buffer, buffer_size, "开发机");
     break;
   case 0x82:
-    snprintf(buffer, buffer_size, "Testkit");
+    snprintf(buffer, buffer_size, "测试机");
     break;
   case 0x83:
-    snprintf(buffer, buffer_size, "Japan");
+    snprintf(buffer, buffer_size, "日本");
     break;
   case 0x84:
-    snprintf(buffer, buffer_size, "USA");
+    snprintf(buffer, buffer_size, "美国");
     break;
   case 0x85:
-    snprintf(buffer, buffer_size, "Europe");
+    snprintf(buffer, buffer_size, "欧洲");
     break;
   case 0x86:
-    snprintf(buffer, buffer_size, "Korea");
+    snprintf(buffer, buffer_size, "韩国");
     break;
   case 0x87:
-    snprintf(buffer, buffer_size, "United Kingdom");
+    snprintf(buffer, buffer_size, "英国");
     break;
   case 0x88:
-    snprintf(buffer, buffer_size, "Mexico");
+    snprintf(buffer, buffer_size, "墨西哥");
     break;
   case 0x89:
-    snprintf(buffer, buffer_size, "Australia & New Zealand");
+    snprintf(buffer, buffer_size, "澳大利亚和新西兰");
     break;
   case 0x8A:
-    snprintf(buffer, buffer_size, "South Asia");
+    snprintf(buffer, buffer_size, "南亚");
     break;
   case 0x8B:
-    snprintf(buffer, buffer_size, "Taiwan");
+    snprintf(buffer, buffer_size, "台湾");
     break;
   case 0x8C:
-    snprintf(buffer, buffer_size, "Russia");
+    snprintf(buffer, buffer_size, "俄罗斯");
     break;
   case 0x8D:
-    snprintf(buffer, buffer_size, "China");
+    snprintf(buffer, buffer_size, "中国");
     break;
   case 0x8E:
-    snprintf(buffer, buffer_size, "Hong Kong");
+    snprintf(buffer, buffer_size, "香港");
     break;
   case 0x8F:
-    snprintf(buffer, buffer_size, "Brazil");
+    snprintf(buffer, buffer_size, "巴西");
     break;
   case 0xA0:
     snprintf(buffer, buffer_size, "Kratos");
     break;
   default:
-    printf_notification("Spoofing: UNKNOWN...\nCheck your `" HEN_INI "` file");
+    printf_notification("欺骗: 未知...\n检查你的 `" HEN_INI "` 文件");
     return;
   }
 
   if (hex > 0 && spoof_target_id(hex) != 0) {
-    printf_notification("ERROR: Unable to spoof target ID");
+    printf_notification("错误: 无法欺骗目标 ID");
     return;
   }
 }
@@ -102,7 +102,7 @@ int _main(struct thread *td) {
 
   uint16_t fw_version = get_firmware();
   if (fw_version < MIN_FW || fw_version > MAX_FW) {
-    printf_notification("Unsupported Firmware");
+    printf_notification("不支持的固件版本");
     return -1;
   }
 
@@ -111,7 +111,7 @@ int _main(struct thread *td) {
 
   // Check temp file to prevent re-running HEN
   if (file_exists(IS_INSTALLED_PATH)) {
-    printf_notification("HEN is already installed. Skipping...");
+    printf_notification("HEN 已安装。跳过...");
     return 0;
   }
 
@@ -129,22 +129,22 @@ int _main(struct thread *td) {
   const int u_to_sec = 1000 * 1000;
   int sleep_sec = kill_ui ? wait_sec : 1;
   if (file_exists(HDD_INI_PATH) && (ver_match || found_ver)) {
-    const char *reason = " unknown!";
+    const char *reason = " 未知!";
     if (ver_match) {
-      reason = " out of date!";
+      reason = " 已过期!";
     } else if (found_ver) {
-      reason = " not found!";
+      reason = " 未找到!";
     }
-    printf_debug("config version not match\n");
-    printf_debug("config.config_version: %d\n", config.config_version);
-    printf_debug("found_version: %d\n", found_version);
+    printf_debug("配置版本不匹配\n");
+    printf_debug("配置版本: %d\n", config.config_version);
+    printf_debug("找到的版本: %d\n", found_version);
     upload_ini(HDD_INI_PATH);
     bool found_usb = file_exists(USB_INI_PATH) == 1;
     if (found_usb) {
       upload_ini(USB_INI_PATH);
     }
-    printf_notification("Config version (%d/%d)%s\n"
-                        "Updating settings file on %s%s...", config.config_version, DEFAULT_CONFIG_VERSION, reason, "HDD", found_usb ? " and USB" : "");
+    printf_notification("配置版本 (%d/%d)%s\n"
+                        "正在更新 %s%s 上的设置文件...", config.config_version, DEFAULT_CONFIG_VERSION, reason, "硬盘", found_usb ? " 和 USB" : "");
     init_config(&config);
     // sleep so user can see welcome message before shellui restarts
     // always sleep for `wait_sec` so other notifications aren't shown
@@ -152,27 +152,27 @@ int _main(struct thread *td) {
   }
 
   if (config.exploit_fixes) {
-    printf_debug("Applying exploit fixes...\n");
+    printf_debug("应用漏洞修复...\n");
     exploit_fixes();
   }
 
   if (config.mmap_patches) {
-    printf_debug("Applying mmap patches...\n");
+    printf_debug("应用 mmap 补丁...\n");
     mmap_patch();
   }
 
   if (config.block_updates) {
-    printf_debug("Blocking updates...\n");
+    printf_debug("阻止更新...\n");
     block_updates();
   }
 
   if (config.disable_aslr) {
-    printf_debug("Disabling ASLR...\n");
+    printf_debug("禁用 ASLR...\n");
     disable_aslr();
   }
 
   if (config.nobd_patches) {
-    printf_debug("Installing NoBD patches...\n");
+    printf_debug("安装 NoBD 补丁...\n");
     no_bd_patch();
   }
 
@@ -181,12 +181,12 @@ int _main(struct thread *td) {
 
   // Do this after the kpayload so if the user spoofs it doesn't affect checks in the kpayload
   if (config.target_id[0] != '\0') {
-    printf_debug("Setting new target ID...\n");
+    printf_debug("设置新的 target ID...\n");
     set_target_id(config.target_id);
   }
 
   if (config.upload_prx) {
-    printf_debug("Writing plugin PRXs to disk...\n");
+    printf_debug("将插件 PRX 写入磁盘...\n");
     upload_prx_to_disk();
   }
 
@@ -196,17 +196,17 @@ int _main(struct thread *td) {
 
   // Create temp file to prevent re-running HEN
   touch_file(IS_INSTALLED_PATH);
-  printf_notification("Welcome to HEN %s", VERSION);
+  printf_notification("欢迎使用 HEN %s", VERSION);
 
   const char *proc = kill_ui ? "SceShellUI" : NULL;
   if (kill_ui) {
     usleep(sleep_sec * u_to_sec);
-    printf_notification("HEN will restart %s\nin %d seconds...", proc, sleep_sec);
+    printf_notification("HEN 将在 %d 秒后\n重启 %s...", sleep_sec, proc);
     usleep(sleep_sec * u_to_sec);
   }
 
 #ifdef DEBUG_SOCKET
-  printf_debug("Closing socket...\n");
+  printf_debug("关闭 socket...\n");
   SckClose(DEBUG_SOCK);
 #endif
 

@@ -149,9 +149,9 @@ static uintptr_t pid_chunk_scan(const int pid, const uintptr_t mem_start, const 
     }
     sceKernelUsleep(1);
   }
-  printf_debug("free mem\n");
+  printf_debug("释放内存\n");
   if (!found) {
-    printf_debug("couldn't find pattern\n"
+    printf_debug("找不到模式\n"
                  "%s\n"
                  "pid %d\n", pattern, pid);
   }
@@ -162,7 +162,7 @@ static uintptr_t pid_chunk_scan(const int pid, const uintptr_t mem_start, const 
 static int sys_proc_memset(const int pid, const uintptr_t src, const uint32_t c, const uint64_t len) {
 #define max_len 8ul * 1024
   if (len > max_len) {
-    printf_debug("Attempting to memset pid %d with length %lu is larger than maximum length %lu\n", pid, len, max_len);
+    printf_debug("尝试对 pid %d 进行 memset，长度 %lu 超过最大长度 %lu\n", pid, len, max_len);
     return -1;
   }
   uint8_t temp[max_len];
