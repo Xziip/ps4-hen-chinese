@@ -1,10 +1,10 @@
-# PS4HEN v2.2.0 BETA (中文版)
+# PS4HEN 中文版
 
 ## 功能特性
-- 当前支持 5.05 - 12.02 固件版本
+- 当前支持 5.05 - 13.04 固件版本
 - 自制程序启用器
 - 插件系统
-  - 插件已集成到 HEN 中，此仓库中的 `hen.bin` 包含 [最新](https://github.com/Scene-Collective/ps4-hen-plugins/releases/latest) 标签的插件。
+  - 插件已集成到 HEN 中（未汉化），此仓库中的 `hen.bin` 包含 [最新](https://github.com/Scene-Collective/ps4-hen-plugins/releases/latest) 标签的插件。
   - 更多信息请访问 [ps4-hen-plugins](https://github.com/Scene-Collective/ps4-hen-plugins) 页面。
 - 越狱
 - 沙盒逃逸
@@ -68,3 +68,8 @@ git clone https://github.com/Scene-Collective/ps4-hen.git
 - [LM](https://twitter.com/LightningMods)
 - [Al-Azif](https://twitter.com/_AlAzif)
 - [zecoxao](https://twitter.com/notnotzecoxao)
+
+## 汉化人员
+- [Xziip](https://github.com/Xziip)
+
+喜欢此项目麻烦给这个项目和原项目点个Star 谢谢喵~
